@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Q&A Game</h1>
+        <p id="tanong"></p>
+        <input type="text" id="sagot" placeholder="Sagot">
+        <button id="sumagot">Sumagot</button>
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+.game-container {
+    width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#tanong {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#sagot {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#sumagot {
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sumagot:hover {
+    background-color: #3e8e41;
+}
+</style>
+<script>
+const mgaTanong = [
+    {
+        tanong: "Anong planeta ang pinakamalaki sa ating sistema solar?",
+        sagot: "Jupiter"
+    },
+    {
+        tanong: "Anong bansa ang may pinakamataas na populasyon?",
+        sagot: "Tsina"
+    },
+    {
+        tanong: "Anong lungsod ang kabesera ng Pilipinas?",
+        sagot: "Maynila"
+    }
+];
+
+// Pumili ng random na tanong
+const randomIndex = Math.floor(Math.random() * mgaTanong.length);
+const tanong = mgaTanong[randomIndex].tanong;
+const sagot = mgaTanong[randomIndex].sagot;
+
+// Ipakita ang tanong
+document.getElementById("tanong").innerHTML = tanong;
+
+// Sumagot sa tanong
+document.getElementById("sumagot").addEventListener("click", function() {
+    const userSagot = document.getElementById("sagot").value.trim();
+    if (userSagot.toLowerCase() === sagot.toLowerCase()) {
+        document.getElementById("result").innerHTML = "Tama!";
+    } else {
+        document.getElementById("result").innerHTML = `Mali! Ang sagot ay ${sagot}.`;
+    }
+});
+</script>
